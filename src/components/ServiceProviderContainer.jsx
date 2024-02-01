@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import ContentCard from "./ContentCard";
 import { StarIcon } from "@heroicons/react/24/solid";
 
@@ -9,11 +10,10 @@ const ProviderItem = ({ name, logoPath }) => (
       alt={name}
       className="w-16 rounded-lg"
     />
-    {/* <h1>{name}</h1> */}
   </li>
 );
 
-const DividingLine = ({ displayType }) => (
+export const DividingLine = ({ displayType }) => (
   <div className="rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
     <div
       className={`${
@@ -23,43 +23,61 @@ const DividingLine = ({ displayType }) => (
 );
 
 const ServiceProviderContainer = ({ media, providers }) => {
-  function getAllProvidersForUS(providersData) {
-    if (!providersData) {
-      console.log("No data available.");
-      return { flatrate: [], rent: [], buy: [] };
-    }
+  const [isLoading, setIsLoading] = useState(true);
+  const [providersForUS, setProvidersForUS] = useState({
+    flatrate: [],
+    rent: [],
+    buy: [],
+  });
 
-    const countryData = providersData["US"];
-
-    if (!countryData) {
-      console.log("No data available for the specified country code: US");
-      return { flatrate: [], rent: [], buy: [] };
-    }
-
-    const allProviders = { flatrate: [], rent: [], buy: [] };
-
-    ["flatrate", "rent", "buy"].forEach((providerType) => {
-      if (countryData[providerType]) {
-        countryData[providerType].forEach((provider) => {
-          if (provider.provider_name && provider.logo_path) {
-            allProviders[providerType].push({
-              name: provider.provider_name,
-              logoPath: provider.logo_path,
-            });
-          }
-        });
+  useEffect(() => {
+    function getAllProvidersForUS(providersData) {
+      if (!providersData) {
+        console.log("No data available.");
+        return { flatrate: [], rent: [], buy: [] };
       }
-    });
 
-    return allProviders;
+      const countryData = providersData["US"];
+
+      if (!countryData) {
+        console.log("No data available for the specified country code: US");
+        return { flatrate: [], rent: [], buy: [] };
+      }
+
+      const allProviders = { flatrate: [], rent: [], buy: [] };
+
+      ["flatrate", "rent", "buy"].forEach((providerType) => {
+        if (countryData[providerType]) {
+          countryData[providerType].forEach((provider) => {
+            if (provider.provider_name && provider.logo_path) {
+              allProviders[providerType].push({
+                name: provider.provider_name,
+                logoPath: provider.logo_path,
+              });
+            }
+          });
+        }
+      });
+
+      return allProviders;
+    }
+
+    const fetchData = async () => {
+      setIsLoading(true);
+      const allProviders = await getAllProvidersForUS(providers);
+      setProvidersForUS(allProviders);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [providers]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
-
-  const providersForUS = getAllProvidersForUS(providers);
-  console.log(media);
 
   return (
     <div>
-      {/* DESKTOP */}
       <div className="hidden lg:block w-[65rem]">
         <ContentCard
           content={
@@ -94,7 +112,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                           </p>
                         )}
                       </div>
-                      <div className="font-semibold flex items-start">
+                      <div className="font-semibold ml-3 whitespace-nowrap flex items-start">
                         <div className="font-semibold flex items-start">
                           <p>
                             {media.vote_average
@@ -185,8 +203,6 @@ const ServiceProviderContainer = ({ media, providers }) => {
           }
         />
       </div>
-
-      {/* MOBILE */}
 
       <div className="lg:hidden">
         <ContentCard
