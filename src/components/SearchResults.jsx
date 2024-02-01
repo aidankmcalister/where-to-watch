@@ -24,19 +24,28 @@ function SearchResults({ results, loading, onSelect }) {
                       key={result.id}
                       className="flex flex-col p-2 rounded-lg"
                       onClick={() => handleClick(result)}>
-                      {result.poster_path && (
+                      {result.poster_path ? (
                         <img
                           src={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
                           alt={result.title || result.name}
                           className="rounded-lg"
                         />
+                      ) : (
+                        <img
+                          src="https://placehold.co/2000x3000"
+                          alt={result.title || result.name}
+                          className="rounded-lg"
+                        />
                       )}
+
                       <h3 className="text-gray-700 font-semibold">
                         {result.title || result.name}
                       </h3>
                       <p>{result.vote_average.toFixed(1)} / 10</p>
-                      {result.first_air_date && (
+                      {result.first_air_date ? (
                         <p>{result.first_air_date.substring(0, 4)}</p>
+                      ) : (
+                        <p>{result.release_date.substring(0, 4)}</p>
                       )}
                     </li>
                   }

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
 
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
@@ -18,15 +18,15 @@ function SearchBar({ onSearch }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" bg-blue-500 rounded-md flex justify-center">
+      className=" bg-white/40 rounded-full flex justify-center">
       <input
         type="text"
         value={query}
         onChange={handleChange}
-        className="h-8 px-1 rounded-l-md rounded-r-none"
+        className="h-10 px-3 rounded-full rounded-r-none bg-transparent"
       />
-      <button type="submit" className=" text-white font-medium">
-        <MagnifyingGlassIcon className="w-6 m-1" />
+      <button type="submit" className="text-gray-500 m-1">
+        <MagnifyingGlassCircleIcon className="w-8" />
       </button>
     </form>
   );
