@@ -30,7 +30,7 @@ function MainContainer() {
 
   const handleSelect = async (media) => {
     setSelected(media);
-    setProvidersLoading(true); // Set providers loading state
+    setProvidersLoading(true);
     try {
       const providersData = await fetchSearchProviders(media.id);
       setProviders(providersData);
@@ -39,7 +39,7 @@ function MainContainer() {
     } catch (error) {
       console.error("Error fetching providers:", error);
     } finally {
-      setProvidersLoading(false); // Reset providers loading state
+      setProvidersLoading(false);
     }
   };
 

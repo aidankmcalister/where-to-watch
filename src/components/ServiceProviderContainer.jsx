@@ -59,6 +59,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
 
   return (
     <div>
+      {/* DESKTOP */}
       <div className="hidden lg:block w-[65rem]">
         <ContentCard
           content={
@@ -111,7 +112,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                   content={
                     <div>
                       <h2 className="text-xl font-semibold text-gray-700">
-                        Subscriptions
+                        Subscription
                       </h2>
                       <DividingLine />
                       <ul className="flex">
@@ -185,6 +186,8 @@ const ServiceProviderContainer = ({ media, providers }) => {
         />
       </div>
 
+      {/* MOBILE */}
+
       <div className="lg:hidden">
         <ContentCard
           content={
@@ -218,7 +221,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                         </p>
                       )}
                     </div>
-                    <div className="font-semibold flex items-start">
+                    <div className="font-semibold ml-3 whitespace-nowrap flex items-start">
                       <div className="font-semibold flex items-start">
                         <p>
                           {media.vote_average
@@ -236,7 +239,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                 content={
                   <div>
                     <h2 className="text-lg font-medium text-gray-700">
-                      Subscriptions
+                      Subscription
                     </h2>
                     <DividingLine displayType="mobile" />
                     <ul className="flex">
