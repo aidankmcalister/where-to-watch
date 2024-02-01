@@ -1,5 +1,16 @@
 /* eslint-disable react/prop-types */
-import MessageCard from "./MessageCard";
+import ContentCard from "./ContentCard";
+
+const ProviderItem = ({ name, logoPath }) => (
+  <li className="rounded-lg flex flex-col first:ml-0 last:mr-0 mx-1 items-center">
+    <img
+      src={`https://image.tmdb.org/t/p/w200${logoPath}`}
+      alt={name}
+      className="w-16 rounded-lg"
+    />
+    {/* <h1>{name}</h1> */}
+  </li>
+);
 
 const ServiceProviderContainer = ({ media, providers }) => {
   function getAllProvidersForUS(providersData) {
@@ -36,80 +47,80 @@ const ServiceProviderContainer = ({ media, providers }) => {
   const providersForUS = getAllProvidersForUS(providers);
 
   return (
-    <div className="m-4">
-      {media.name}
-      <img
-        src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
-        alt={media.title || media.name}
-        className="rounded-lg"
-      />
+    <ContentCard
+      content={
+        <div>
+          {media.name}
+          <img
+            src={`https://image.tmdb.org/t/p/w500${media.backdrop_path}`}
+            alt={media.title || media.name}
+            className="rounded-xl lg:hidden"
+          />
 
-      <div>
-        <h2>Subscriptions</h2>
-        {providersForUS.flatrate.length > 0 ? (
-          <ul className="grid grid-cols-2 gap-3">
-            {providersForUS.flatrate.map((provider) => (
-              <li
-                key={provider.name}
-                className="p-1 rounded-lg bg-gray-500 flex flex-col items-center">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${provider.logoPath}`}
-                  alt={provider.name}
-                  className="w-16 rounded-lg"
-                />
-                <h1>{provider.name}</h1>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <MessageCard text="No subscription options found" />
-        )}
-      </div>
+          <ContentCard
+            content={
+              <div>
+                <h2>Subscriptions</h2>
+                {providersForUS.flatrate.length > 0 ? (
+                  <ul className="flex">
+                    {providersForUS.flatrate.map((provider) => (
+                      <ProviderItem
+                        key={provider.name}
+                        name={provider.name}
+                        logoPath={provider.logoPath}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No subscription options found</p>
+                )}
+              </div>
+            }
+          />
 
-      <div>
-        <h2>Rent</h2>
-        {providersForUS.rent.length > 0 ? (
-          <ul className="grid grid-cols-2 gap-3">
-            {providersForUS.rent.map((provider) => (
-              <li
-                key={provider.name}
-                className="p-1 rounded-lg bg-gray-500 flex flex-col items-center">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${provider.logoPath}`}
-                  alt={provider.name}
-                  className="w-16 rounded-lg"
-                />
-                <h1>{provider.name}</h1>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <MessageCard text="No rent options found" />
-        )}
-      </div>
-
-      <div>
-        <h2>Buy</h2>
-        {providersForUS.buy.length > 0 ? (
-          <ul className="grid grid-cols-2 gap-3">
-            {providersForUS.buy.map((provider) => (
-              <li
-                key={provider.name}
-                className="p-1 rounded-lg bg-gray-500 flex flex-col items-center">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${provider.logoPath}`}
-                  alt={provider.name}
-                  className="w-16 rounded-lg"
-                />
-                <h1>{provider.name}</h1>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <MessageCard text="No buy options found" />
-        )}
-      </div>
-    </div>
+          <ContentCard
+            content={
+              <div>
+                <h2>Rent</h2>
+                {providersForUS.rent.length > 0 ? (
+                  <ul className="flex">
+                    {providersForUS.rent.map((provider) => (
+                      <ProviderItem
+                        key={provider.name}
+                        name={provider.name}
+                        logoPath={provider.logoPath}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No rent options found</p>
+                )}
+              </div>
+            }
+          />
+          <ContentCard
+            content={
+              <div>
+                <h2>Buy</h2>
+                {providersForUS.buy.length > 0 ? (
+                  <ul className="flex">
+                    {providersForUS.buy.map((provider) => (
+                      <ProviderItem
+                        key={provider.name}
+                        name={provider.name}
+                        logoPath={provider.logoPath}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No buy options found</p>
+                )}
+              </div>
+            }
+          />
+        </div>
+      }
+    />
   );
 };
 
