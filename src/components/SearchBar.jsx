@@ -4,9 +4,13 @@ import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
 
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
+  const [searchError, setSearchError] = useState(false);
 
   const handleChange = (event) => {
-    setQuery(event.target.value);
+    const newQuery = event.target.value;
+    setQuery(newQuery);
+    setSearchError(false); // Reset search error flag when query changes
+    onSearch(newQuery);
   };
 
   const handleSubmit = (event) => {
@@ -18,7 +22,7 @@ function SearchBar({ onSearch }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" bg-white/40 rounded-full flex justify-center">
+      className="bg-white/40 rounded-full flex justify-center">
       <input
         type="text"
         value={query}
@@ -28,6 +32,10 @@ function SearchBar({ onSearch }) {
       <button type="submit" className="text-gray-500 m-1">
         <MagnifyingGlassCircleIcon className="w-8" />
       </button>
+      {searchError && (
+        // eslint-disable-next-line react/no-unescaped-entities
+        <p className="text-red-500">No results found for "{query}"</p>
+      )}
     </form>
   );
 }

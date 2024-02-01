@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         ubuntu: ['"Ubuntu"', ...defaultTheme.fontFamily.sans],
+        roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: "#B554D7",

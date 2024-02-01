@@ -11,11 +11,9 @@ function SearchResults({ results, loading, onSelect }) {
       content={
         <div className="flex justify-center">
           {loading && <p>Loading...</p>}
-          {results.length === 0 && !loading && (
-            <ContentCard content="No results found" />
-          )}
+          {results.length === 0 && !loading && <p>No results found</p>}
           {results.length > 0 && (
-            <ul className="grid-cols-2 grid gap-1">
+            <ul className="grid-cols-2 lg:grid-cols-5 grid gap-1">
               {results.map((result) => (
                 <ContentCard
                   key={result.name}
@@ -41,12 +39,19 @@ function SearchResults({ results, loading, onSelect }) {
                       <h3 className="text-gray-700 font-semibold">
                         {result.title || result.name}
                       </h3>
-                      <p>{result.vote_average.toFixed(1)} / 10</p>
-                      {result.first_air_date ? (
-                        <p>{result.first_air_date.substring(0, 4)}</p>
-                      ) : (
-                        <p>{result.release_date.substring(0, 4)}</p>
-                      )}
+                      <p>
+                        {result.vote_average
+                          ? result.vote_average.toFixed(1)
+                          : "N/A"}{" "}
+                        / 10
+                      </p>
+                      <p>
+                        {result.first_air_date
+                          ? result.first_air_date.substring(0, 4)
+                          : result.release_date
+                          ? result.release_date.substring(0, 4)
+                          : "N/A"}
+                      </p>
                     </li>
                   }
                 />
