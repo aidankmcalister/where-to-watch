@@ -1,5 +1,4 @@
 import "./styles/App.css";
-import "./styles/loadingContainer.css";
 // import Footer from "./components/Footer";
 import MainContainer from "./components/MainContainer";
 
