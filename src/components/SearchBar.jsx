@@ -27,7 +27,7 @@ function SearchBar({ onSearch }) {
         type="text"
         value={query}
         onChange={handleChange}
-        className="h-10 px-3 rounded-full rounded-r-none bg-transparent"
+        className="h-10 px-3 rounded-full rounded-r-none bg-transparent lg:w-[30rem]"
       />
       <button type="submit" className="text-gray-500 m-1">
         <MagnifyingGlassCircleIcon className="w-8" />

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import ContentCard from "./ContentCard";
+import ReactLoading from "react-loading";
 
 function SearchResults({ results, loading, onSelect }) {
   const [displayResults, setDisplayResults] = useState(false);
@@ -34,9 +35,16 @@ function SearchResults({ results, loading, onSelect }) {
     return (
       <ContentCard
         content={
-          <div className="flex justify-center">
-            <p>Loading...</p>
-          </div>
+          // <div className="flex justify-center">
+          //   <p>Loading...</p>
+          // </div>
+          // <LoadingContainer />
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#e879f9"}
+            height={"5rem"}
+            width={"5rem"}
+          />
         }
       />
     );
