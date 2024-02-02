@@ -32,7 +32,10 @@ function MainContainer() {
     setSelected(media);
     setProvidersLoading(true);
     try {
-      const providersData = await fetchSearchProviders(media.id);
+      const providersData = await fetchSearchProviders(
+        media.id,
+        media.media_type
+      );
       setProviders(providersData);
       console.log("Selected:", selected);
       console.log("Providers:", providers);
