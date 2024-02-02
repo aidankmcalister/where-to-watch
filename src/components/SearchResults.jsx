@@ -4,11 +4,24 @@ import ContentCard from "./ContentCard";
 
 function SearchResults({ results, loading, onSelect }) {
   const [displayResults, setDisplayResults] = useState(false);
+  const [filteredAndSortedResults, setFilteredAndSortedResults] = useState([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplayResults(true);
     }, 300);
+
+    // Filter results that have a name
+
+    const filteredResults = results.filter((result) => {
+      return (result.name || result.title) && result.poster_path;
+    });
+    // Sort the filtered results by popularity
+    const sortedResults = filteredResults.sort(
+      (a, b) => b.popularity - a.popularity
+    );
+
+    setFilteredAndSortedResults(sortedResults);
 
     return () => clearTimeout(timer);
   }, [results]);
@@ -29,7 +42,7 @@ function SearchResults({ results, loading, onSelect }) {
     );
   }
 
-  if (results.length === 0 && !loading) {
+  if (filteredAndSortedResults.length === 0 && !loading) {
     return (
       <ContentCard
         content={
@@ -46,11 +59,12 @@ function SearchResults({ results, loading, onSelect }) {
       content={
         <div className="flex justify-center">
           <ul className="grid-cols-2 lg:grid-cols-5 grid gap-1">
-            {results.map((result) => (
+            {filteredAndSortedResults.map((result) => (
               <ContentCard
-                key={result.id}
+                key={result.name}
                 content={
                   <li
+                    key={result.id}
                     className="flex flex-col p-2 rounded-lg"
                     onClick={() => handleClick(result)}>
                     {result.poster_path ? (
