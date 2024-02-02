@@ -6,9 +6,6 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 const fetchSearchProviders = async (seriesId, mediaType) => {
   try {
-    // let mediaType = getMediaType(seriesId);
-    // let mediaType = "tv";
-
     const providersResponse = await axios.get(
       `${BASE_URL}/${mediaType}/${seriesId}/watch/providers?api_key=${API_KEY}`
     );
@@ -23,11 +20,11 @@ const fetchSearchProviders = async (seriesId, mediaType) => {
     throw error;
   }
 };
-
+// https://api.themoviedb.org/3/search/multi?query=woah&include_adult=false&language=en-US&page=1
 const searchMoviesAndShows = async (query) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}&language=en-US&page=1`
+      `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}&include_adult=false&language=en-US&page=1`
     );
     if (response?.data?.results) {
       return response.data.results.slice(0, 20);
