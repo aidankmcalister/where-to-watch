@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import colors from "tailwindcss/colors";
 const defaultTheme = require("tailwindcss/defaultTheme");
 
@@ -9,6 +10,7 @@ export default {
       fontFamily: {
         ubuntu: ['"Ubuntu"', ...defaultTheme.fontFamily.sans],
         roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
+        josefin: ['"Josefin Sans"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: "#B554D7",
@@ -18,5 +20,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animated"),
+    require("tailwind-scrollbar-hide"),
+  ],
 };

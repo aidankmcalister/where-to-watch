@@ -52,4 +52,45 @@ const fetchLastAirDate = async (seriesId) => {
   }
 };
 
-export { searchMoviesAndShows, fetchSearchProviders, fetchLastAirDate };
+const fetchFeaturedMovies = async () => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US`
+    );
+
+    if (response?.data?.results) {
+      return response.data.results;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching featured movies:", error);
+    throw error;
+  }
+};
+
+// Function to fetch featured TV shows
+const fetchFeaturedTVShows = async () => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/trending/tv/week?api_key=${API_KEY}&language=en-US`
+    );
+
+    if (response?.data?.results) {
+      return response.data.results;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching featured TV shows:", error);
+    throw error;
+  }
+};
+
+export {
+  searchMoviesAndShows,
+  fetchSearchProviders,
+  fetchLastAirDate,
+  fetchFeaturedMovies,
+  fetchFeaturedTVShows,
+};

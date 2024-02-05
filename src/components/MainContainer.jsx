@@ -49,17 +49,22 @@ function MainContainer() {
   return (
     <div className="m-4 flex flex-col items-center max-w-7xl">
       <SearchBar onSearch={handleSearch} />
-      {searchQuery === "" && !selected && <WelcomeCard />}
-      {searchQuery !== "" && !selected && (
-        <SearchResults
-          results={results}
-          loading={loading}
-          onSelect={handleSelect}
-        />
-      )}
-      {selected && !providersLoading && (
-        <ServiceProviderContainer media={selected} providers={providers} />
-      )}
+
+      <div className="mt-3">
+        {searchQuery === "" && !selected && (
+          <WelcomeCard handleSelectPassdown={handleSelect} />
+        )}
+        {searchQuery !== "" && !selected && (
+          <SearchResults
+            results={results}
+            loading={loading}
+            onSelect={handleSelect}
+          />
+        )}
+        {selected && !providersLoading && (
+          <ServiceProviderContainer media={selected} providers={providers} />
+        )}
+      </div>
     </div>
   );
 }
