@@ -6,7 +6,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 const ProviderItem = ({ name, logoPath }) => (
   <li className="rounded-lg flex flex-col first:ml-0 last:mr-0 mx-1 items-center">
     <img
-      src={`https://image.tmdb.org/t/p/w200${logoPath}`}
+      src={`https://image.tmdb.org/t/p/original${logoPath}`}
       alt={name}
       className="w-16 rounded-lg"
     />
@@ -84,7 +84,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
             <div className="flex">
               {media.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original${media.poster_path}`}
                   alt={media.title || media.name}
                   className="rounded-lg w-[500px]"
                 />
@@ -133,7 +133,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                         Subscription
                       </h2>
                       <DividingLine />
-                      <ul className="flex">
+                      <ul className="flex flex-wrap">
                         {providersForUS.flatrate.map((provider) => (
                           <ProviderItem
                             key={provider.name}
@@ -157,7 +157,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                         Rent
                       </h2>
                       <DividingLine />
-                      <ul className="flex">
+                      <ul className="flex flex-wrap">
                         {providersForUS.rent.map((provider) => (
                           <ProviderItem
                             key={provider.name}
@@ -181,7 +181,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                         Buy
                       </h2>
                       <DividingLine />
-                      <ul className="flex">
+                      <ul className="flex flex-wrap">
                         {providersForUS.buy.map((provider) => (
                           <ProviderItem
                             key={provider.name}
@@ -210,7 +210,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
             <div className="my-1">
               {media.backdrop_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${media.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`}
                   alt={media.title || media.name}
                   className="rounded-lg"
                 />
@@ -258,7 +258,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                       Subscription
                     </h2>
                     <DividingLine displayType="mobile" />
-                    <ul className="flex">
+                    <ul className="flex flex-wrap">
                       {providersForUS.flatrate.map((provider) => (
                         <ProviderItem
                           key={provider.name}
@@ -282,7 +282,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                       Rent
                     </h2>
                     <DividingLine displayType="mobile" />
-                    <ul className="flex">
+                    <ul className="flex flex-wrap">
                       {providersForUS.rent.map((provider) => (
                         <ProviderItem
                           key={provider.name}
@@ -306,7 +306,7 @@ const ServiceProviderContainer = ({ media, providers }) => {
                       Buy
                     </h2>
                     <DividingLine displayType="mobile" />
-                    <ul className="flex">
+                    <ul className="flex flex-wrap">
                       {providersForUS.buy.map((provider) => (
                         <ProviderItem
                           key={provider.name}

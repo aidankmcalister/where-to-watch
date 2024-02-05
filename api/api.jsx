@@ -35,4 +35,21 @@ const searchMoviesAndShows = async (query) => {
   }
 };
 
-export { searchMoviesAndShows, fetchSearchProviders };
+const fetchLastAirDate = async (seriesId) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/tv/${seriesId}?api_key=${API_KEY}&language=en-US`
+    );
+
+    if (response?.data?.last_air_date) {
+      return response.data.last_air_date;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching last air date:", error);
+    throw error;
+  }
+};
+
+export { searchMoviesAndShows, fetchSearchProviders, fetchLastAirDate };
