@@ -126,7 +126,7 @@ const SearchResults = ({ results, loading, onSelect }) => {
                         )}
                       </div>
                       <div className="flex items-center">
-                        <StarIcon className="text-yellow-500 w-3.5 mr-0.5" />
+                        <StarIcon className="text-yellow-500 w-3.5 mr-1" />
                         <p>
                           {result.vote_average
                             ? result.vote_average.toFixed(1)
@@ -135,7 +135,7 @@ const SearchResults = ({ results, loading, onSelect }) => {
                         </p>
                       </div>
                       <div className="flex">
-                        <ClockIcon className="w-3.5 mr-0.5" />
+                        <ClockIcon className="w-3.5 mr-1" />
                         {result.first_air_date ? (
                           <p>
                             {result.first_air_date.substring(0, 4)} -{" "}
