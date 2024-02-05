@@ -12,7 +12,7 @@ const MediaCard = ({ result, lastAirDates, handleClick, homePage }) => {
       onClick={() => handleClick(result)}>
       {result.poster_path ? (
         <img
-          src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
           alt={result.title || result.name}
           className="rounded-lg object-cover"
         />
